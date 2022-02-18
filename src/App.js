@@ -22,10 +22,6 @@ function App() {
     getUserData();
   }, []);
 
-  useEffect(() => {
-    console.log(`|| `, window.location.href);
-  }, [user]);
-
   function handleLogout(){
     logout();
     setUser('');
@@ -54,7 +50,6 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/">
-              {console.log(`|| user `, user)}
               {
                 !user
                   ? <AuthPage setUser={setUser} />

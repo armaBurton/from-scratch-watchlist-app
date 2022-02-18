@@ -12,9 +12,8 @@ export async function signUp(email, password){
 }
 
 export async function signIn(email, password){
-  console.log(`|| email, password >`, email, password);
   const response = await client.auth.signIn({ email, password });
-  console.log(`|| response >`, response);
+
   return response.user;
 }
 
@@ -25,6 +24,8 @@ export async function logout() {
 }
 
 export async function getCards(){
-  const response = await 
-  console.log(`|| response >`, response);
+  console.log(`tried to fetch`);
+  const response = await fetch(`/.netlify/functions/hearthstone/cards?`);
+
+  return checkError(response.json());
 }
