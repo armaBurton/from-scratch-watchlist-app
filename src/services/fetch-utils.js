@@ -23,3 +23,8 @@ export async function logout() {
 
   return window.location = '../';
 }
+
+export async function getCards(){
+  const response = await 
+  console.log(`|| response >`, response);
+}

@@ -23,9 +23,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(`|| user >`, user);
+    console.log(`|| `, window.location.href);
   }, [user]);
-  
+
   function handleLogout(){
     logout();
     setUser('');
@@ -34,32 +34,34 @@ function App() {
   return (
     <Router>
       <div>
-        <header>
-          {
-            user && 
+        {
+          !user 
+            ? <header></header>
+            : <header>
               <ul>
                 <li>
                   <NavLink activeClassName='active' to='#'>Search</NavLink>
                 </li>
                 <li>
-                  <NavLink activeClassName='active' to='#'>WatchList</NavLink>
+                  <NavLink activeClassName='active' to='/list-page'>WatchList</NavLink>
                 </li>
                 <li>
                   <NavLink activeClassName='inactive' to='/' onClick={handleLogout}>Logout</NavLink>
                 </li>
               </ul>
-          }
-        </header>
+            </header>
+        }
         <main>
           <Switch>
-            <Route exact path='/'>
+            <Route exact path="/">
+              {console.log(`|| user `, user)}
               {
                 !user
                   ? <AuthPage setUser={setUser} />
-                  : <Redirect path='/list' />
+                  : <Redirect to='/list-page' user={user} />
               }
             </Route>
-            <Route exact path='/list'>
+            <Route exact to='/list-page'>
               {
                 !user
                   ? <Redirect path='/' />
