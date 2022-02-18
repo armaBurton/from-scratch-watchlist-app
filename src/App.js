@@ -51,7 +51,7 @@ function App() {
           }
         </header>
         <main>
-          <switch>
+          <Switch>
             <Route exact path='/'>
               {
                 !user
@@ -66,7 +66,7 @@ function App() {
                   : <ListPage user={user} />
               }
             </Route>
-          </switch>
+          </Switch>
         </main>
       </div>
     </Router>

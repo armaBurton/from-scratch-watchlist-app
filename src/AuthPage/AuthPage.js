@@ -6,7 +6,7 @@ export default function AuthPage({ setUser }){
   const [password, setPassword] = useState();
 
   async function handleSignIn(e){
-    e.preventDefault;
+    e.preventDefault();
     const user = await signIn(email, password);
 
     setUser(user);
@@ -32,7 +32,7 @@ export default function AuthPage({ setUser }){
           <input required type='password' name='password' value={password} onChange={e => setPassword(e.target.value)} />
         </label>
         <div className="buttons">
-          <button className='sign-in login-button-style' onClick={handleSignIn}>Sign In</button>
+          <button className='sign-in login-button-style'>Sign In</button>
           <button className='sign-up login-button-style' onClick={handleSignUp}>Sign Up</button>
         </div>
       </form>

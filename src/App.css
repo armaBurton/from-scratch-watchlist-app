@@ -98,13 +98,13 @@ form label input{
   width: 85px;
   text-align: center;
   cursor: pointer;
-  background-color: var(--sky);
+  background-color: var(--sand);
   border-radius: 5px;
 }
 
 .login-button-style:hover{
-  background-color: var(--blue);
-  color: var(--sky);
+  background-color: var(--light-blue);
+  color: var(--black);
 }
 
 .login-button-style:active{
