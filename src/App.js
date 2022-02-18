@@ -21,6 +21,10 @@ function App() {
     }
     getUserData();
   }, []);
+
+  useEffect(() => {
+    console.log(`|| user >`, user);
+  }, [user]);
   
   function handleLogout(){
     logout();
@@ -59,7 +63,7 @@ function App() {
               {
                 !user
                   ? <Redirect path='/' />
-                  : <ListPage path='/list' />
+                  : <ListPage user={user} />
               }
             </Route>
           </switch>

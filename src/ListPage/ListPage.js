@@ -1,4 +1,4 @@
-export default function ListPage(){
+export default function ListPage({ setUser }){
 
   return <></>;
 }
