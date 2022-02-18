@@ -1,14 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Texturina:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root{
-  --color: #000000
+  --blue: #0476D9;
+  --sky: #2ECEF2;
+  --sand: #F2CF66;
+  --sand-trans: #F2CF66aa;
+  --brown: #A66F2D;
+  --black: #0D0D0D;
 }
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border-radius: 5px;
+  height: inherit;
+  font-family: 'Work Sans', sans-serif;
+  font-family: 'Texturina', serif;
+  color: var(--black);
 }
 
 body{
   width: 100%;
+  min-height: 100%;
+  background-image: linear-gradient(-20deg, var(--sand-trans) 0%, var(--sand-trans) 100%), url('./background/background.jpg');
+  display: flex;
+  justify-content: center;
+}
+
+header{
+  width: 100%;
+  height: 60px;
+  background-color: var(--sand);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 15px 100px;
+}
+
+ul{
+  height: 100%;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+main{
+  width: 1250px;
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
+}
+
+.auth{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth img{
+  margin-top: 180px;
+  width:300px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+form label{
+  font-weight: 900;
+}
+
+form label input{
+  padding: 3px 5px;
+  font-family: 'Work Sans', sans-serif;
+  border-radius: 3px;
+  width: 180px;
+}
+
+.sign-up{
+  margin-left: 10px;;
+}
+
+.login-button-style{
+  font-family: 'Work Sans', sans-serif;
+  padding: 3px 0;
+  width: 85px;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--sky);
+  border-radius: 5px;
+}
+
+.login-button-style:hover{
+  background-color: var(--blue);
+  color: var(--sky);
+}
+
+.login-button-style:active{
+  background-color: var(--sand);
+  color: var(--brown);
 }
