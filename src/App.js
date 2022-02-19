@@ -9,13 +9,14 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AuthPage from './AuthPage/AuthPage';
 import ListPage from './ListPage/ListPage';
-import { getUser, logout, searchCards } from './services/fetch-utils';
+import { getUser, logout, getOwnage } from './services/fetch-utils';
 import SearchPage from './SearchPage/SearchPage';
 
 function App() {
   const [user, setUser] = useState();
   const [search, setSearch] = useState('');
   const [cards, setCards] = useState();
+  const [ownage, setOwnage] = useState([]);
 
   useEffect(() => {
     async function getUserData(){
@@ -30,7 +31,23 @@ function App() {
     setUser('');
   }
 
-  console.log(`|| cards >`, cards);
+  async function refreshOwnage(){
+    const myOwnage = await getOwnage();
+
+    setOwnage(myOwnage);
+  }
+
+  useEffect(() => {
+    refreshOwnage();
+  }, []);
+  
+  async function isOnOwnedList(dbfId){
+    const match = ownage.find(card => Number(card.dbfId) === Number(dbfId));
+
+    return Boolean(match);
+  }
+
+  console.log(`|| ownage >`, ownage);
 
   return (
     <Router>
@@ -66,7 +83,7 @@ function App() {
               {
                 !user
                   ? <Redirect path='/' />
-                  : <ListPage user={user} cards={cards} />
+                  : <ListPage user={user} cards={cards} refreshOwnage={refreshOwnage} isOnOwnedList={isOnOwnedList} />
               }
             </Route>
           </Switch>

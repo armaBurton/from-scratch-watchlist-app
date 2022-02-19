@@ -37,6 +37,7 @@ header{
   align-items: flex-end;
   justify-content: flex-end;
   padding: 15px 100px;
+  z-index: 999;
 }
 
 ul{
@@ -147,5 +148,14 @@ input{
 }
 
 .card-holder img:hover{
-  transform: scale(1.063);
+  animation: enlarge .063s ease-in-out forwards;
+}
+
+@keyframes enlarge {
+  0% {
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.063);
+  }
 }
