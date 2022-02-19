@@ -1,19 +1,12 @@
-import { useEffect, useState } from 'react';
+import RenderListCard from '../RenderListCard/RenderListCard';
 
-export default function ListPage({ user }){
-  const [cards, setCards] = useState();
+export default function ListPage({ user, cards }){
 
-  useEffect(() => {
-    async function fetchCards(){
-      const response = await fetch(`/.netlify/functions/hearthstone/`);
-
-      // const data = await response.json();
-      console.log(`|| response >`, await response.json());
-      // console.log(`|| data >`, data);
-      // setCards(data);
+  return <div className='pack-of-cards'>
+    {
+      cards 
+        ? cards.map((card, i) => <RenderListCard key={card + i} card={card} />)
+        : <></>
     }
-    fetchCards();
-  }, []);
-  
-  return <div></div>;
+  </div>;
 }

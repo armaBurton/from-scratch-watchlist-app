@@ -9,10 +9,13 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AuthPage from './AuthPage/AuthPage';
 import ListPage from './ListPage/ListPage';
-import { getUser, logout } from './services/fetch-utils';
+import { getUser, logout, searchCards } from './services/fetch-utils';
+import SearchPage from './SearchPage/SearchPage';
 
 function App() {
   const [user, setUser] = useState();
+  const [search, setSearch] = useState('');
+  const [cards, setCards] = useState();
 
   useEffect(() => {
     async function getUserData(){
@@ -27,6 +30,8 @@ function App() {
     setUser('');
   }
 
+  console.log(`|| cards >`, cards);
+
   return (
     <Router>
       <div>
@@ -36,7 +41,8 @@ function App() {
             : <header>
               <ul>
                 <li>
-                  <NavLink activeClassName='active' to='#'>Search</NavLink>
+                  {/* <NavLink activeClassName='active' to='#'>Search</NavLink> */}
+                  <SearchPage search={search} setSearch={setSearch} setCards={setCards} />
                 </li>
                 <li>
                   <NavLink activeClassName='active' to='/list-page'>WatchList</NavLink>
@@ -60,7 +66,7 @@ function App() {
               {
                 !user
                   ? <Redirect path='/' />
-                  : <ListPage user={user} />
+                  : <ListPage user={user} cards={cards} />
               }
             </Route>
           </Switch>

@@ -5,8 +5,7 @@ require('dotenv').config();
 
 exports.handler = async (event) => {
   try {
-
-    const response = await fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/volley', {
+    const response = await fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/${event.queryStringParameters.search}`, {
       // 'method': 'GET',
       'headers': {
         'x-rapidapi-host': process.env.REACT_APP_X_RAPIDAPI_HOST,

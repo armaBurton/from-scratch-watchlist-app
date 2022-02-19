@@ -23,9 +23,10 @@ export async function logout() {
   return window.location = '../';
 }
 
-export async function getCards(){
-  console.log(`tried to fetch`);
-  const response = await fetch(`/.netlify/functions/hearthstone/cards?`);
+export async function searchCards(search){
+  const response = await fetch(`/.netlify/functions/hearthstone/?search=${search.toLowerCase()}`);
 
-  return checkError(response.json());
+  const json = await response.json();
+
+  return json;
 }
