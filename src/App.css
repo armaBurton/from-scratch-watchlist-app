@@ -20,11 +20,10 @@
 }
 
 body{
-  width: 100%;
+  min-width: 100%;
   min-height: 100%;
   background-image: linear-gradient(-20deg, var(--sand-trans) 0%, var(--sand-trans) 100%), url('./background/background.jpg');
-  display: flex;
-  justify-content: center;
+  background-size: cover;
 }
 
 header{
@@ -48,14 +47,27 @@ ul{
   align-items: center;
 }
 
+
+li form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 a{
   text-decoration: none;
 }
 
 main{
-  width: 1250px;
-  min-height: calc(100vh - 60px);
+  width: 90%;
+  /* min-height: calc(100vh - 60px); */
   margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center; 
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .auth{
@@ -81,7 +93,7 @@ form label{
   font-weight: 900;
 }
 
-form label input{
+input{
   padding: 3px 5px;
   font-family: 'Work Sans', sans-serif;
   border-radius: 3px;
@@ -110,4 +122,30 @@ form label input{
 .login-button-style:active{
   background-color: var(--sand);
   color: var(--brown);
+}
+
+.pack-of-cards{
+  /* width: 90%; */
+  /* min-height: 100%; */
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+}
+
+.card-holder{
+  width: 230px;
+  height: 306px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-holder img{
+  width: 200px;
+  object-fit: contain;
+}
+
+.card-holder img:hover{
+  transform: scale(1.063);
 }
