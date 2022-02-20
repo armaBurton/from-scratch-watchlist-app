@@ -27,6 +27,7 @@ function App() {
       setUser(data);
     }
     getUserData();
+    refreshOwnage();
   }, []);
 
   function handleLogout(){
@@ -56,16 +57,6 @@ function App() {
   }
 
   const location = window.location.pathname.split('/').pop();
-
-  useEffect(() => {
-
-    async function runWhenPageChange(){
-      refreshOwnage();
-      setCards(await searchCards(search));
-    }
-    
-    runWhenPageChange();
-  }, [page]);
 
   return (
     <Router>
