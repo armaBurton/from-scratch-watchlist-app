@@ -179,3 +179,42 @@ input{
 .owned{
   box-shadow: inset 0 0 30px #ff0000, 0 0 20px #ff0000;
 }
+
+.divider{
+  min-width: 100vw;
+  display: flex;
+  flex-direction: row;
+  padding: 0 50px;
+  gap: 50px;
+  /* justify-content: space-between; */
+}
+
+.is-wanted h1{
+  color: #0011ff
+}
+
+.is-wanted, .is-owned{
+  width: 50%;
+  text-align: center;
+
+}
+
+.is-owned h1{
+  color: #ff0000;
+}
+
+.watched-card-holder{
+  width: 160px;
+}
+
+.watched-card-holder img{
+  width: 160px;
+  border-radius: 10px;;
+}
+
+.holder{
+  margin-top: 30px;;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}

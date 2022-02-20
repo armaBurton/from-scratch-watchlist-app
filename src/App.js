@@ -9,9 +9,10 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AuthPage from './AuthPage/AuthPage';
 import ListPage from './ListPage/ListPage';
-import { getUser, logout, getOwnage } from './services/fetch-utils';
+import { getUser, logout, getOwnage, searchCards } from './services/fetch-utils';
 import SearchPage from './SearchPage/SearchPage';
 import WatchedPage from './WatchedPage/WatchedPage';
+import RenderListCard from './RenderListCard/RenderListCard';
 
 function App() {
   const [user, setUser] = useState();
@@ -38,19 +39,33 @@ function App() {
 
     setOwnage(myOwnage);
   }
-
-  useEffect(() => {
-    refreshOwnage();
-
-  }, []);
-  
+ 
   function isOnOwnedList(dbfId){
     const match = ownage.find(card => Number(card.dbfId) === Number(dbfId));
 
     return Boolean(match);
   }
 
+  async function setPageList(){
+    setPage('list');
+    await refreshOwnage();
+  }
+
+  async function setPageWatched(){
+    setPage('watched'); 
+  }
+
   const location = window.location.pathname.split('/').pop();
+
+  useEffect(() => {
+
+    async function runWhenPageChange(){
+      refreshOwnage();
+      setCards(await searchCards(search));
+    }
+    
+    runWhenPageChange();
+  }, [page]);
 
   return (
     <Router>
@@ -61,14 +76,14 @@ function App() {
             : <header>
               <ul>
                 <li>
-                  {/* <NavLink activeClassName='active' to='#'>Search</NavLink> */}
                   {
                     location === 'watched-cards' 
-                      ? <NavLink to='/list-page' onClick={setPage}>Search</NavLink>
-                      : <SearchPage search={search} setSearch={setSearch} setCards={setCards} />}
+                      ? <NavLink to='/list-page' onClick={setPageList}>Search</NavLink>
+                      : <SearchPage search={search} setSearch={setSearch} setCards={setCards} />
+                  }
                 </li>
                 <li>
-                  <NavLink activeClassName='active' to='/watched-cards' setCards={setCards} setSearch={setSearch} onClick={setPage}>Watched Cards</NavLink>
+                  <NavLink activeClassName='active' to='/watched-cards' setCards={setCards} setSearch={setSearch} onClick={setPageWatched}>Watched Cards</NavLink>
                 </li>
                 <li>
                   <NavLink activeClassName='inactive' to='/' onClick={handleLogout}>Logout</NavLink>
@@ -85,10 +100,10 @@ function App() {
                   : <Redirect to='/list-page' user={user} />
               }
             </Route>
-            <Route exact to='/list-page'>
+            <Route exact path='/list-page'>
               {
                 !user
-                  ? <Redirect path='/' />
+                  ? <Redirect to='/' />
                   : <ListPage 
                     user={user} 
                     cards={cards} 
@@ -97,14 +112,12 @@ function App() {
                   />
               }
             </Route>
-            <Route exact to='watched-cards'>
+            <Route exact path='/watched-cards'>
               {
                 !user
-                  ? <Redirect path='/' />
+                  ? <Redirect to='/' />
                   : <WatchedPage 
-                    user={user}
-                    cards={cards}
-                    isOnOwnedList={isOnOwnedList}
+                    ownage={ownage}
                     refreshOwnage={refreshOwnage}
                   />
               }
