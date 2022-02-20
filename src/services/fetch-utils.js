@@ -37,7 +37,7 @@ export async function addToOwnage(card){
   return checkError(response);
 }
 
-export async function getOwnage(){
+export async function getWant(){
   const response = await client
     .from(`hearthstone`)
     .select()
@@ -45,3 +45,22 @@ export async function getOwnage(){
   
   return checkError(response);
 }
+
+export async function getOwnage(){
+  const response = await client
+    .from(`hearthstone`)
+    .select()
+    .order(`id`);
+
+  return checkError(response);
+}
+
+export async function updateOwnage(dbfId){
+  const response = await client
+    .from(`hearthstone`)
+    .update({ is_owned: true })
+    .match({ dbfId })
+    .order(`id`);
+
+  return checkError(response);
+} 
