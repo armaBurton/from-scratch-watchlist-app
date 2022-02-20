@@ -1,21 +1,35 @@
-import { logDOM } from '@testing-library/react';
-import ListPage from '../ListPage/ListPage';
+import RenderWantedCard from '../RenderWantedCard/RenderWantedCard';
+import RenderOwnedCard from '../RenderOwnedCard/RenderOwnedCard';
 
-export default function WatchedPage({ setCards }){
+export default function WatchedPage({ ownage, refreshOwnage }){
+  const ownArr = [];
+  const wantArr = [];
 
-  const cards = [{
-    dbfId: 0,
-    img: '0',
-    is_owned: false,
-    name: ''
-  }];
-  
-  setCards({});
-  console.log(`here`);
+  ownage.map(own => {
+    own.is_owned ? ownArr.push(own) : wantArr.push(own);
+  });
+
   return (
 
     <div>
-      
+      <div className="divider">
+        <div className="is-wanted">
+          <h1>Wanted</h1>
+          <div className="holder">
+            {
+              wantArr.map((want, i) => <RenderWantedCard key={want + i} want={want} refreshOwnage={refreshOwnage} />)
+            }
+          </div>
+        </div>
+        <div className="is-owned">
+          <h1>Owned</h1>
+          <div className="holder">
+            {
+              ownArr.map((owned, i) => <RenderOwnedCard key={owned + i} owned={owned} />)
+            }
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -17,14 +17,11 @@ export default function RenderListCard({
 
 
   async function handleClassName(obj){
-    console.log(`|| obj.dbfId >`, obj.dbfId);
     if (obj.is_owned === true){
       setOwned('owned');
     } else if (obj.is_owned === false) {
-      console.log('|| owned');
       setOwned('wanted');
     } else {
-      console.log('|| nothing');
       setOwned('');
     }
     refreshOwnage();
@@ -46,7 +43,6 @@ export default function RenderListCard({
     if (isOwned) {
       await updateOwnage(card.dbfId);
       card.is_owned = true;
-      console.log(`|| card.is_owned >`, card.is_owned);
       handleClassName(card);
       refreshOwnage();
     }
@@ -57,10 +53,6 @@ export default function RenderListCard({
       ? <></>
       : <div className='card-holder'>
         <img onClick={handleClick} src={card.img} alt={card.name} className={owned}/>
-        
-
-        
-        {/* <img onClick={handleClick} src={card.img} alt={card.name} className={`${isWanted ? 'wanted' : ''} ${isOwned ? 'owned' : ''} card-image`} /> */}
       </div>
   );
 }
