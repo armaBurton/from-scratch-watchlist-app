@@ -1,12 +1,14 @@
 import { searchCards } from '../services/fetch-utils';
 
-export default function SearchPage({ search, setSearch, setCards }){
+export default function SearchPage({ search, setSearch, setCards, setLocation }){
 
   async function handleSearch(e){
     e.preventDefault();
 
     setCards(await searchCards(search));
   }
+
+  setLocation('/list-page');
 
   return (
     <>
