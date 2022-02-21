@@ -1,13 +1,15 @@
 import RenderWantedCard from '../RenderWantedCard/RenderWantedCard';
 import RenderOwnedCard from '../RenderOwnedCard/RenderOwnedCard';
 
-export default function WatchedPage({ ownage, refreshOwnage }){
+export default function WatchedPage({ ownage, refreshOwnage, setLocation }){
   const ownArr = [];
   const wantArr = [];
 
   ownage.map(own => {
     own.is_owned ? ownArr.push(own) : wantArr.push(own);
   });
+
+  setLocation('/watched-cards');
 
   return (
 

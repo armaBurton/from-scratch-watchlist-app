@@ -20,6 +20,7 @@ function App() {
   const [cards, setCards] = useState();
   const [ownage, setOwnage] = useState([]);
   const [page, setPage] = useState();
+  const [location, setLocation] = useState('/link-page');
 
   useEffect(() => {
     async function getUserData(){
@@ -47,16 +48,13 @@ function App() {
     return Boolean(match);
   }
 
-  async function setPageList(){
-    setPage('list');
-    await refreshOwnage();
+  console.log(`|| location >`, location);
+
+  function handleLocation(){
+    setLocation('/list-page');
   }
 
-  async function setPageWatched(){
-    setPage('watched'); 
-  }
-
-  const location = window.location.pathname.split('/').pop();
+  console.log(`|| location >`, location);
 
   return (
     <Router>
@@ -68,13 +66,13 @@ function App() {
               <ul>
                 <li>
                   {
-                    location === 'watched-cards' 
-                      ? <NavLink to='/list-page' onClick={setPageList}>Search</NavLink>
-                      : <SearchPage search={search} setSearch={setSearch} setCards={setCards} />
+                    location === '/watched-cards' 
+                      ? <NavLink to='/list-page' onClick={handleLocation} >Search</NavLink>
+                      : <SearchPage search={search} setSearch={setSearch} setCards={setCards} setLocation={setLocation} />
                   }
                 </li>
                 <li>
-                  <NavLink activeClassName='active' to='/watched-cards' setCards={setCards} setSearch={setSearch} onClick={setPageWatched}>Watched Cards</NavLink>
+                  <NavLink activeClassName='active' to='/watched-cards' setCards={setCards} setSearch={setSearch} >Watched Cards</NavLink>
                 </li>
                 <li>
                   <NavLink activeClassName='inactive' to='/' onClick={handleLogout}>Logout</NavLink>
@@ -110,6 +108,7 @@ function App() {
                   : <WatchedPage 
                     ownage={ownage}
                     refreshOwnage={refreshOwnage}
+                    setLocation={setLocation}
                   />
               }
             </Route>
