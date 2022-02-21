@@ -9,8 +9,6 @@ export default function ListPage({
 
 }){
 
-  console.log(`|| cards >`, cards[0]);
-
   return <div className='pack-of-cards'>
     {
       cards 

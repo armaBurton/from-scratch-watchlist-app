@@ -49,7 +49,6 @@ ul{
   align-items: center;
 }
 
-
 li form{
   display: flex;
   flex-direction: row;
@@ -68,7 +67,6 @@ a, .search{
 
 main{
   width: 100%;
-  /* min-height: calc(100vh - 60px); */
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap;
@@ -135,13 +133,10 @@ input{
 
 .pack-of-cards{
   width: 100%;
-  /* min-height: 100%; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  /* justify-content: flex-start; */
-  /* align-items: flex-start; */
 }
 
 .card-holder{
@@ -172,12 +167,11 @@ input{
 }
 
 .wanted{
-  /* background: radial-gradient(#0011ff, #9198e500 90%); */
-  box-shadow: inset 0 0 30px #0011ff, 0 0 20px #0011ff;
+  box-shadow: inset 0 0 30px var(--blue), 0 0 20px var(--blue);
 }
 
 .owned{
-  box-shadow: inset 0 0 30px #ff0000, 0 0 20px #ff0000;
+  box-shadow: inset 0 0 30px var(--brown), 0 0 20px var(--brown);
 }
 
 .divider{
@@ -186,11 +180,10 @@ input{
   flex-direction: row;
   padding: 0 50px;
   gap: 50px;
-  /* justify-content: space-between; */
 }
 
 .is-wanted h1{
-  color: #0011ff
+  color: var(--blue)
 }
 
 .is-wanted, .is-owned{
@@ -200,7 +193,7 @@ input{
 }
 
 .is-owned h1{
-  color: #ff0000;
+  color: var(--brown);
 }
 
 .watched-card-holder{
