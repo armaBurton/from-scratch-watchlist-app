@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { addToOwnage, updateOwnage } from '../services/fetch-utils';
 
 
 
 export default function RenderListCard({
 
-  user, 
-  card, 
+  card,
+  own, 
   refreshOwnage, 
   isOnOwnedList, 
 
 }){
-  const [owned, setOwned] = useState({});
+  const [owned, setOwned] = useState();
 
   const isOwned = isOnOwnedList(card.dbfId);
 
-
   async function handleClassName(obj){
+    console.log(`|| obj.is_owned >`, obj.is_owned);
     if (obj.is_owned === true){
       setOwned('owned');
     } else if (obj.is_owned === false) {
@@ -24,17 +24,17 @@ export default function RenderListCard({
     } else {
       setOwned('');
     }
-    refreshOwnage();
+    await refreshOwnage();
   }
 
-  
   async function handleClick(){
     if (!isOwned) {
       const isOwnedObj = {
         dbfId: card.dbfId,
         img: card.img,
         is_owned: false,
-        name: card.name
+        name: card.name,
+        class_name: 'is-wanted'
       };
       addToOwnage(isOwnedObj);
       handleClassName(isOwnedObj);
