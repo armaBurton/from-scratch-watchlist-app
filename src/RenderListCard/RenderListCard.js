@@ -38,12 +38,14 @@ export default function RenderListCard({
       };
       addToOwnage(isOwnedObj);
       handleClassName(isOwnedObj);
+      setOwned('wanted');
       refreshOwnage();
     }
     if (isOwned) {
       await updateOwnage(card.dbfId);
       card.is_owned = true;
       handleClassName(card);
+      setOwned('owned');
       refreshOwnage();
     }
   }

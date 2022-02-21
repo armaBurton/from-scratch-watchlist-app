@@ -5,7 +5,10 @@ export default function SearchPage({ search, setSearch, setCards, setLocation })
   async function handleSearch(e){
     e.preventDefault();
 
-    setCards(await searchCards(search));
+    const query = await searchCards(search);
+    query.error === 404 
+      ? alert(`No such Query exists`)
+      : setCards(await searchCards(search));
   }
 
   setLocation('/list-page');
