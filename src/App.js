@@ -43,7 +43,8 @@ function App() {
   function isOnOwnedList(dbfId){
     const match = ownage.find(card => Number(card.dbfId) === Number(dbfId));
 
-    return Boolean(match);
+    // return Boolean(match);
+    return (match);
   }
 
   function handleLocation(){
@@ -94,6 +95,7 @@ function App() {
                       ownage={ownage} 
                       isOnOwnedList={isOnOwnedList} 
                       refreshOwnage={refreshOwnage} 
+                      setCards={setCards}
                     />
               }
             </Route>
