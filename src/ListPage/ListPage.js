@@ -4,7 +4,8 @@ export default function ListPage({
   cards,
   ownage, 
   isOnOwnedList, 
-  refreshOwnage, 
+  refreshOwnage,
+  setCards,
 
 }){
 
@@ -16,6 +17,7 @@ export default function ListPage({
         ? cards.map((card, i) => <RenderListCard 
           key={card + i} 
           card={card}
+          setCards={setCards}
           ownage={ownage} 
           isOnOwnedList={isOnOwnedList} 
           refreshOwnage={refreshOwnage} 

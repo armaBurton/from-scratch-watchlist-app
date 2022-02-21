@@ -6,13 +6,13 @@ import { addToOwnage, updateOwnage } from '../services/fetch-utils';
 export default function RenderListCard({
 
   card,
-  own, 
+  ownage, 
   refreshOwnage, 
-  isOnOwnedList, 
+  isOnOwnedList,
+  setCards
 
 }){
   const [owned, setOwned] = useState();
-
   const isOwned = isOnOwnedList(card.dbfId);
 
   async function handleClassName(obj){
@@ -27,34 +27,42 @@ export default function RenderListCard({
     await refreshOwnage();
   }
 
+  
+
+  let cardObj = {
+    dbfId: card.dbfId,
+    img: card.img,
+    is_owned: false,
+    name: card.name,
+    class_name: 'wanted'
+  };
   async function handleClick(){
     if (!isOwned) {
-      const isOwnedObj = {
-        dbfId: card.dbfId,
-        img: card.img,
-        is_owned: false,
-        name: card.name,
-        class_name: 'is-wanted'
-      };
-      addToOwnage(isOwnedObj);
-      handleClassName(isOwnedObj);
+      await addToOwnage(cardObj);
+      handleClassName(cardObj);
       setOwned('wanted');
-      refreshOwnage();
     }
-    if (isOwned) {
-      await updateOwnage(card.dbfId);
-      card.is_owned = true;
-      handleClassName(card);
+    if (isOwned && cardObj.is_owned === false) {
+      handleClassName(cardObj);
       setOwned('owned');
-      refreshOwnage();
+      await updateOwnage(card.dbfId);
     }
+    await refreshOwnage();
   }
-
+  
   return (
     card.img === undefined
       ? <></>
       : <div className='card-holder'>
-        <img onClick={handleClick} src={card.img} alt={card.name} className={owned}/>
+        {
+          isOwned 
+            ? isOwned.is_owned === true
+              ? <img onClick={handleClick} src={card.img} alt={card.name} className='owned'/>
+              : <img onClick={handleClick} src={card.img} alt={card.name} className='wanted'/>
+            : <img onClick={handleClick} src={card.img} alt={card.name} className=''/>
+
+            // : <img onClick={handleClick} src={card.img} alt={card.name} className={owned}/>
+        }
       </div>
   );
 }
