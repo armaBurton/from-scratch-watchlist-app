@@ -154,7 +154,7 @@ input{
   border-radius: 30px;;
 }
 
-.wanted:hover{
+.wanted:hover, .untracked:hover{
   animation: enlarge .063s ease-in-out forwards;
 }
 

@@ -39,7 +39,7 @@ export default function RenderListCard({
             ? isOwned.is_owned === true
               ? <img onClick={handleClick} src={card.img} alt={card.name} className='owned'/>
               : <img onClick={handleClick} src={card.img} alt={card.name} className='wanted'/>
-            : <img onClick={handleClick} src={card.img} alt={card.name} className=''/>
+            : <img onClick={handleClick} src={card.img} alt={card.name} className='untracked'/>
         }
       </div>
   );
