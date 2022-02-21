@@ -1,20 +1,22 @@
 import RenderListCard from '../RenderListCard/RenderListCard';
 
 export default function ListPage({ 
-  user, 
-  cards, 
+  cards,
+  ownage, 
   isOnOwnedList, 
   refreshOwnage, 
 
 }){
+
+  console.log(`|| cards >`, cards[0]);
 
   return <div className='pack-of-cards'>
     {
       cards 
         ? cards.map((card, i) => <RenderListCard 
           key={card + i} 
-          user={user} 
-          card={card} 
+          card={card}
+          ownage={ownage} 
           isOnOwnedList={isOnOwnedList} 
           refreshOwnage={refreshOwnage} 
         />)

@@ -9,17 +9,15 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AuthPage from './AuthPage/AuthPage';
 import ListPage from './ListPage/ListPage';
-import { getUser, logout, getOwnage, searchCards } from './services/fetch-utils';
+import { getUser, logout, getOwnage } from './services/fetch-utils';
 import SearchPage from './SearchPage/SearchPage';
 import WatchedPage from './WatchedPage/WatchedPage';
-import RenderListCard from './RenderListCard/RenderListCard';
 
 function App() {
   const [user, setUser] = useState();
   const [search, setSearch] = useState('');
   const [cards, setCards] = useState();
   const [ownage, setOwnage] = useState([]);
-  const [page, setPage] = useState();
   const [location, setLocation] = useState('/link-page');
 
   useEffect(() => {
@@ -48,13 +46,9 @@ function App() {
     return Boolean(match);
   }
 
-  console.log(`|| location >`, location);
-
   function handleLocation(){
     setLocation('/list-page');
   }
-
-  console.log(`|| location >`, location);
 
   return (
     <Router>
@@ -93,12 +87,14 @@ function App() {
               {
                 !user
                   ? <Redirect to='/' />
-                  : <ListPage 
-                    user={user} 
-                    cards={cards} 
-                    isOnOwnedList={isOnOwnedList} 
-                    refreshOwnage={refreshOwnage} 
-                  />
+                  : cards === undefined
+                    ? () => {}
+                    : <ListPage 
+                      cards={cards} 
+                      ownage={ownage} 
+                      isOnOwnedList={isOnOwnedList} 
+                      refreshOwnage={refreshOwnage} 
+                    />
               }
             </Route>
             <Route exact path='/watched-cards'>

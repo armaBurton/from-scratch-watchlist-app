@@ -58,7 +58,10 @@ export async function getOwnage(){
 export async function updateOwnage(dbfId){
   const response = await client
     .from(`hearthstone`)
-    .update({ is_owned: true })
+    .update({ 
+      is_owned: true,
+      class_name : 'is-owned'
+    })
     .match({ dbfId })
     .order(`id`);
 
