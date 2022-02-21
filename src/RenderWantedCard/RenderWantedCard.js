@@ -9,7 +9,7 @@ export default function RenderWantedCard({ want, refreshOwnage }){
 
   return (
     <div className='watched-card-holder'>
-      <img onClick={handleClick} src={want.img} alt={want.name} className='wanted'/>
+      <img onClick={handleClick} src={want.img} alt={want.name} className='wanted wanted-card-holder'/>
     </div>
   );
 }

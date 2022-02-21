@@ -145,6 +145,7 @@ input{
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .card-holder img{
@@ -153,7 +154,7 @@ input{
   border-radius: 30px;;
 }
 
-.card-holder img:hover{
+.wanted:hover{
   animation: enlarge .063s ease-in-out forwards;
 }
 
@@ -210,4 +211,8 @@ input{
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.wanted-card-holder:hover{
+  animation: enlarge .063s ease-in-out forwards !important;
 }
