@@ -4,7 +4,7 @@ import { addToOwnage, updateOwnage } from '../services/fetch-utils';
 export default function RenderListCard({
 
   card,
-  refreshOwnage, 
+  // refreshOwnage, 
   isOnOwnedList,
 
 }){
@@ -27,7 +27,7 @@ export default function RenderListCard({
       setOwned('owned');
       await updateOwnage(card.dbfId);
     }
-    await refreshOwnage();
+    // await refreshOwnage();
   }
   
   return (

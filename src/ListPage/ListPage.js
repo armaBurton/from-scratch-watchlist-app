@@ -4,7 +4,7 @@ export default function ListPage({
   cards,
   ownage, 
   isOnOwnedList, 
-  refreshOwnage,
+  // refreshOwnage,
   setCards,
 
 }){
@@ -18,7 +18,7 @@ export default function ListPage({
           setCards={setCards}
           ownage={ownage} 
           isOnOwnedList={isOnOwnedList} 
-          refreshOwnage={refreshOwnage} 
+          // refreshOwnage={refreshOwnage} 
         />)
         : <></>
     }

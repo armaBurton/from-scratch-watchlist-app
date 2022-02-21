@@ -1,7 +1,11 @@
 import RenderWantedCard from '../RenderWantedCard/RenderWantedCard';
 import RenderOwnedCard from '../RenderOwnedCard/RenderOwnedCard';
 
-export default function WatchedPage({ ownage, refreshOwnage, setLocation }){
+export default function WatchedPage({ 
+  ownage, 
+  // refreshOwnage, 
+  setLocation 
+}){
   const ownArr = [];
   const wantArr = [];
 
@@ -19,7 +23,11 @@ export default function WatchedPage({ ownage, refreshOwnage, setLocation }){
           <h1>Wanted</h1>
           <div className="holder">
             {
-              wantArr.map((want, i) => <RenderWantedCard key={want + i} want={want} refreshOwnage={refreshOwnage} />)
+              wantArr.map((want, i) => <RenderWantedCard 
+                key={want + i} 
+                want={want} 
+                // refreshOwnage={refreshOwnage} 
+              />)
             }
           </div>
         </div>

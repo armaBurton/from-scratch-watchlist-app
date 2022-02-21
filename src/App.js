@@ -26,7 +26,7 @@ function App() {
       setUser(data);
     }
     getUserData();
-    refreshOwnage();
+    // refreshOwnage();
   }, []);
 
   function handleLogout(){
@@ -34,16 +34,25 @@ function App() {
     setUser('');
   }
 
-  async function refreshOwnage(){
-    const myOwnage = await getOwnage();
+  useEffect(() => {
+    async function refreshOwnage(){
+      const myOwnage = await getOwnage();
+  
+      setOwnage(myOwnage);
+    }
+    refreshOwnage();
+  }, [ownage]);
+  
 
-    setOwnage(myOwnage);
-  }
+  // async function refreshOwnage(){
+  //   const myOwnage = await getOwnage();
+
+  //   setOwnage(myOwnage);
+  // }
  
   function isOnOwnedList(dbfId){
     const match = ownage.find(card => Number(card.dbfId) === Number(dbfId));
 
-    // return Boolean(match);
     return (match);
   }
 
@@ -94,7 +103,7 @@ function App() {
                       cards={cards} 
                       ownage={ownage} 
                       isOnOwnedList={isOnOwnedList} 
-                      refreshOwnage={refreshOwnage} 
+                      // refreshOwnage={refreshOwnage} 
                       setCards={setCards}
                     />
               }
@@ -105,7 +114,7 @@ function App() {
                   ? <Redirect to='/' />
                   : <WatchedPage 
                     ownage={ownage}
-                    refreshOwnage={refreshOwnage}
+                    // refreshOwnage={refreshOwnage}
                     setLocation={setLocation}
                   />
               }

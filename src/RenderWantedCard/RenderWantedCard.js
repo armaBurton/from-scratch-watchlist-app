@@ -1,10 +1,13 @@
 import { updateOwnage } from '../services/fetch-utils';
 
-export default function RenderWantedCard({ want, refreshOwnage }){
+export default function RenderWantedCard({ 
+  want, 
+  // refreshOwnage 
+}){
 
   async function handleClick(){
     await updateOwnage(want.dbfId);
-    await refreshOwnage();
+    // await refreshOwnage();
   }
 
   return (
