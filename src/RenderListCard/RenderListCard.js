@@ -8,7 +8,7 @@ export default function RenderListCard({
   isOnOwnedList,
 
 }){
-  const [owned, setOwned] = useState();
+  const [owned, setOwned] = useState('wanted');
   const isOwned = isOnOwnedList(card.dbfId);
 
   let cardObj = {
@@ -16,7 +16,7 @@ export default function RenderListCard({
     img: card.img,
     is_owned: false,
     name: card.name,
-    class_name: 'wanted'
+    class_name: owned
   };
   async function handleClick(){
     if (!isOwned) {

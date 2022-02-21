@@ -1,5 +1,4 @@
 import { updateOwnage } from '../services/fetch-utils';
-import { useEffect } from 'react';
 
 export default function RenderWantedCard({ want, refreshOwnage }){
 
